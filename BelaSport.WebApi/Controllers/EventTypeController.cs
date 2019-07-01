@@ -23,7 +23,7 @@ namespace BelaSport.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<EventType>> Get()
         {
-            return Ok(await _unit.EventType.GetList());
+            return Ok( await _unit.EventType.GetList());
         }
 
         // GET api/values/5
