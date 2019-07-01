@@ -9,8 +9,8 @@ namespace BelaSport.Repository.SqlServer
     {
         public IRepository<EventTitle> EventTitle { get; }
 
-        public IRepository<EventHandler> EventHandler { get; }
-
         public IRepository<Host> Host { get; }
+
+        public IRepository<EventType> EventType { get; }
     }
 }

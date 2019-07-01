@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BelaSport.Repository.SqlServer
 {
-    public class EventTitleRepository : Repository<EventTitle>, IEventTitle
+    public class EventTitleRepository : Repository<EventTitle>, IEventTitleRepository
     {
         public EventTitleRepository(BelaSportContext bsContext) : base(bsContext)
         {

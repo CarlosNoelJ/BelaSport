@@ -8,7 +8,7 @@ namespace BelaSport.Repository
     public interface IUnitOfWork
     {
         IRepository<EventTitle> EventTitle {get;}
-        IRepository<EventHandler> EventHandler { get; }
+        IRepository<EventType> EventType { get; }
         IRepository<Host> Host { get; }
     }
 }
