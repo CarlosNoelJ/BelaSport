@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BelaSport.Repository.SqlSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BelaSport.WebApi.Tests", "BelaSport.WebApi.Tests\BelaSport.WebApi.Tests.csproj", "{9F09E303-660B-48F1-9A38-F6BA4A66767B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BelaSport.Models", "BelaSport.Models\BelaSport.Models.csproj", "{0B6EE91F-DF6F-4D10-8886-A8C7F5A2F09B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9F09E303-660B-48F1-9A38-F6BA4A66767B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F09E303-660B-48F1-9A38-F6BA4A66767B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F09E303-660B-48F1-9A38-F6BA4A66767B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B6EE91F-DF6F-4D10-8886-A8C7F5A2F09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6EE91F-DF6F-4D10-8886-A8C7F5A2F09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6EE91F-DF6F-4D10-8886-A8C7F5A2F09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6EE91F-DF6F-4D10-8886-A8C7F5A2F09B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
