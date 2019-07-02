@@ -19,10 +19,10 @@ namespace BelaSport.Repository.SqlServer
             return _bsContext.SaveChanges();
         }
 
-        bool IRepository<T>.Delete(T entity)
+        int IRepository<T>.Delete(T entity)
         {
             _bsContext.Remove(entity);
-            return _bsContext.SaveChanges()>0;
+            return _bsContext.SaveChanges();
         }
 
         IEnumerable<T> IRepository<T>.GetList()
@@ -30,10 +30,10 @@ namespace BelaSport.Repository.SqlServer
             return _bsContext.Set<T>().AsNoTracking().ToList();
         }
 
-        bool IRepository<T>.Update(T entity)
+        int IRepository<T>.Update(T entity)
         {
             _bsContext.Update(entity);
-            return _bsContext.SaveChanges()>0;
+            return _bsContext.SaveChanges();
         }
     }
 }

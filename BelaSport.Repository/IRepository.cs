@@ -7,7 +7,7 @@ namespace BelaSport.Repository
     {
         int Add(T entity);
         IEnumerable<T> GetList();
-        bool Update(T entity);
-        bool Delete(T entity);
+        int Update(T entity);
+        int Delete(T entity);
     }
 }
