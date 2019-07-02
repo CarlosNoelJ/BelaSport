@@ -31,6 +31,15 @@ namespace BelaSport.WebApi.Tests
             result.Count.Should().BeGreaterThan(0);
         }
 
+        [Test]
+        public void POST_GoodData_OkResult()
+        {
+            var request = _eventType.Post(NewEventType()) as OkObjectResult;
+            var result = (int)request.Value;
+
+            result.Should().BeGreaterThan(0);
+        }
+
         private IUnitOfWork CreateUnitOfWork()
         {
             var fixture = new Fixture();
@@ -53,7 +62,6 @@ namespace BelaSport.WebApi.Tests
         {
             return new EventType
             {
-                EventTypeId = 3,
                 NameEventType = "E-Sport"
             };
         }

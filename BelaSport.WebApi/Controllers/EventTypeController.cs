@@ -1,4 +1,5 @@
-﻿using BelaSport.Repository;
+﻿using BelaSport.Models;
+using BelaSport.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BelaSport.WebApi.Controllers
@@ -28,11 +29,12 @@ namespace BelaSport.WebApi.Controllers
         //    return "value";
         //}
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        // POST api/values
+        [HttpPost]
+        public IActionResult Post(EventType EventType)
+        {
+            return Ok(_unit.EventType.Add(EventType));
+        }
 
         //// PUT api/values/5
         //[HttpPut("{id}")]
