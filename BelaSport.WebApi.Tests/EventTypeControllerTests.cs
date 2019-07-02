@@ -4,14 +4,10 @@ using BelaSport.Repository;
 using BelaSport.WebApi.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
-using System.Text;
 
 namespace BelaSport.WebApi.Tests
 {
@@ -25,7 +21,7 @@ namespace BelaSport.WebApi.Tests
         }
 
         [Test]
-        public void Get_GoodData_OkResult()
+        public void GET_GoodData_OkResult()
         {
             var request = _eventType.Get() as OkObjectResult;
             var result = (List<EventType>)request.Value;
@@ -34,7 +30,7 @@ namespace BelaSport.WebApi.Tests
         }
 
         [Test]
-        public void Get_ByID_GoodData_OkResult()
+        public void GET_ByID_GoodData_OkResult()
         {
             var eventTypeId = 1;
 
