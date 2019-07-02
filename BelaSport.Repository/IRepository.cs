@@ -9,5 +9,6 @@ namespace BelaSport.Repository
         IEnumerable<T> GetList();
         int Update(T entity);
         int Delete(T entity);
+        T GetById(int id);
     }
 }

@@ -13,6 +13,11 @@ namespace BelaSport.Repository.SqlServer
             _bsContext = bsContext;
         }
 
+        public T GetById(int id)
+        {
+            return _bsContext.Find<T>(id);
+        }
+
         int IRepository<T>.Add(T entity)
         {
             _bsContext.Add(entity);

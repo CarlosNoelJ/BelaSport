@@ -4,6 +4,7 @@ using BelaSport.Repository;
 using BelaSport.WebApi.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -30,6 +31,17 @@ namespace BelaSport.WebApi.Tests
             var result = (List<EventType>)request.Value;
 
             result.Count.Should().BeGreaterThan(0);
+        }
+
+        [Test]
+        public void Get_ByID_GoodData_OkResult()
+        {
+            var eventTypeId = 1;
+
+            var request = _eventType.GetById(eventTypeId) as OkObjectResult;
+            var result = (EventType)request.Value;
+
+            result.Should().NotBeNull();
         }
 
         [Test]
@@ -71,6 +83,7 @@ namespace BelaSport.WebApi.Tests
             eventTyperepository.Setup(x => x.Update(It.Is<EventType>(a => a.EventTypeId == 1))).Returns(1);
             eventTyperepository.Setup(x => x.Delete(It.Is<EventType>(a => a.EventTypeId == 1))).Returns(1);
             eventTyperepository.Setup(x => x.GetList()).Returns(eventType);
+            eventTyperepository.Setup(x => x.GetById(1)).Returns(eventType[0]);
 
             var unit = new Mock<IUnitOfWork>();
             unit.Setup(x => x.EventType).Returns(eventTyperepository.Object);

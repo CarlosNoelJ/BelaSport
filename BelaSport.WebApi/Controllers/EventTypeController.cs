@@ -23,11 +23,12 @@ namespace BelaSport.WebApi.Controllers
         }
 
         // GET api/values/5
-        //[HttpGet("{id}")]
-        //public ActionResult<string> Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet]
+        [Route("{id:int}")]
+        public IActionResult GetById(int id)
+        {
+            return Ok(_unit.EventType.GetById(id));
+        }
 
         // POST api/values
         [HttpPost]
