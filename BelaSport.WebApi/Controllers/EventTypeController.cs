@@ -36,11 +36,12 @@ namespace BelaSport.WebApi.Controllers
             return Ok(_unit.EventType.Add(EventType));
         }
 
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        // PUT api/values/5
+        [HttpPut]
+        public IActionResult Put(EventType EventType)
+        {
+            return Ok(_unit.EventType.Update(EventType));
+        }
 
         //// DELETE api/values/5
         //[HttpDelete("{id}")]

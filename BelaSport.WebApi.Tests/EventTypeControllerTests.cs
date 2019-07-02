@@ -9,6 +9,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 
 namespace BelaSport.WebApi.Tests
@@ -40,6 +41,15 @@ namespace BelaSport.WebApi.Tests
             result.Should().BeGreaterThan(0);
         }
 
+        [Test]
+        public void PUT_GoodData_OkResult()
+        {
+            var request = _eventType.Put(NewEventType()) as OkObjectResult;
+            var result = (int)request.Value;
+
+            result.Should().BeGreaterThan(0);
+        }
+
         private IUnitOfWork CreateUnitOfWork()
         {
             var fixture = new Fixture();
@@ -62,6 +72,7 @@ namespace BelaSport.WebApi.Tests
         {
             return new EventType
             {
+                EventTypeId = 1,
                 NameEventType = "E-Sport"
             };
         }
