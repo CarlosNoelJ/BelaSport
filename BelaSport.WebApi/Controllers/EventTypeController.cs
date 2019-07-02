@@ -43,10 +43,11 @@ namespace BelaSport.WebApi.Controllers
             return Ok(_unit.EventType.Update(EventType));
         }
 
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/values/5
+        [HttpDelete()]
+        public IActionResult Delete(EventType EventType)
+        {
+            return Ok(_unit.EventType.Delete(EventType));
+        }
     }
 }

@@ -50,6 +50,15 @@ namespace BelaSport.WebApi.Tests
             result.Should().BeGreaterThan(0);
         }
 
+        [Test]
+        public void DELETE_GoodData_OkResult()
+        {
+            var request = _eventType.Delete(NewEventType()) as OkObjectResult;
+            var result = (int)request.Value;
+
+            result.Should().BeGreaterThan(0);
+        }
+
         private IUnitOfWork CreateUnitOfWork()
         {
             var fixture = new Fixture();
