@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BelaSport.Models;
-using BelaSport.Repository;
+﻿using BelaSport.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BelaSport.WebApi.Controllers
@@ -21,9 +16,9 @@ namespace BelaSport.WebApi.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<EventType>> Get()
+        public IActionResult Get()
         {
-            return Ok( await _unit.EventType.GetList());
+            return Ok( _unit.EventType.GetList());
         }
 
         // GET api/values/5

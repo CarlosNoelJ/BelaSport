@@ -5,9 +5,9 @@ namespace BelaSport.Repository
 {
     public interface IRepository<T> where T:class
     {
-        Task<int> Add(T entity);
-        Task<IEnumerable<T>> GetList();
-        Task<bool> Update(T entity);
-        Task<bool> Delete(T entity);
+        int Add(T entity);
+        IEnumerable<T> GetList();
+        bool Update(T entity);
+        bool Delete(T entity);
     }
 }
