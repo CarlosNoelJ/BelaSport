@@ -1,6 +1,7 @@
 ﻿using BelaSport.Repository;
 using BelaSport.Repository.SqlServer;
 using BelaSport.WebApi.ApiConventions;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace BelaSport.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation();
 
             services.AddTransient(option => new BelaSportContext(new DbContextOptionsBuilder<BelaSportContext>().UseSqlServer(Configuration.GetConnectionString("BelaSport")).Options));
 
