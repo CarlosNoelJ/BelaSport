@@ -1,7 +1,5 @@
-﻿using System;
-using BelaSport.Models;
+﻿using BelaSport.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BelaSport.Repository.SqlServer
 {
