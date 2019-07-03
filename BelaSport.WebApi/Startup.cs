@@ -1,5 +1,6 @@
 ﻿using BelaSport.Repository;
 using BelaSport.Repository.SqlServer;
+using BelaSport.WebApi.ApiConventions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
+[assembly: ApiConventionType(typeof(BelaSportApiConventions))]
 namespace BelaSport.WebApi
 {
     public class Startup
@@ -25,6 +27,12 @@ namespace BelaSport.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTransient(option => new BelaSportContext(new DbContextOptionsBuilder<BelaSportContext>().UseSqlServer(Configuration.GetConnectionString("BelaSport")).Options));
+
+            services.AddEntityFrameworkSqlServer()
+               .AddDbContextPool<BelaSportContext>(
+                opt => opt.UseSqlServer(Configuration.GetConnectionString("BelaSport"),
+                b => b.MigrationsAssembly("BelaSport.WebApi")))
+               .BuildServiceProvider();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

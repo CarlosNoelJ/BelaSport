@@ -5,10 +5,6 @@ namespace BelaSport.Repository.SqlServer
 {
     public partial class BelaSportContext : DbContext
     {
-        public BelaSportContext()
-        {
-        }
-
         public BelaSportContext(DbContextOptions<BelaSportContext> options)
             : base(options)
         {
