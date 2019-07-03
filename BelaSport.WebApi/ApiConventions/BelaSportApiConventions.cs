@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace BelaSport.WebApi.ApiConventions
 {
-    public class BelaSportApiConventions
+    public static class BelaSportApiConventions
     {
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
         [ProducesResponseType(200)]
