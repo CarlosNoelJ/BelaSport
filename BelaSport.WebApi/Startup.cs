@@ -40,6 +40,7 @@ namespace BelaSport.WebApi
                     Title = "BelaSport API",
                     Version = "v1"
                 });
+                c.CustomSchemaIds(x => x.FullName);
             });
         }
 
@@ -57,6 +58,10 @@ namespace BelaSport.WebApi
             }
 
             app.UseSwagger();
+
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BelaSport API v1");
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
