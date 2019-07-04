@@ -1,6 +1,8 @@
 ﻿using BelaSport.Models;
 using BelaSport.Repository;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BelaSport.WebApi.Controllers
 {
@@ -9,10 +11,11 @@ namespace BelaSport.WebApi.Controllers
     public class HostController : ControllerBase
     {
         private readonly IUnitOfWork _unit;
-
-        public HostController(IUnitOfWork unit)
+        private readonly IValidator<Host> _validator;
+        public HostController(IUnitOfWork unit, IValidator<Host> validator)
         {
             _unit = unit;
+            _validator = validator;
         }
 
         [HttpGet]
@@ -31,7 +34,15 @@ namespace BelaSport.WebApi.Controllers
         [HttpPost]
         public IActionResult Post(Host Host)
         {
-            return Ok(_unit.Host.Add(Host));
+            List<string> response = new List<string>();
+
+            var validationResult = _validator.Validate(Host);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult);
+            }
+                return Ok(_unit.Host.Add(Host));
         }
 
         [HttpPut]

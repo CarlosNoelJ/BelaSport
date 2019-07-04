@@ -3,6 +3,7 @@ using BelaSport.Models;
 using BelaSport.Repository;
 using BelaSport.WebApi.Controllers;
 using FluentAssertions;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
@@ -14,10 +15,11 @@ namespace BelaSport.WebApi.Tests
     public class HostControllerTests
     {
         private HostController _host;
+        private readonly IValidator<Host> _validator;
         [SetUp]
         public void Setup()
         {
-            _host = new HostController(CreateUnitOfWork());
+            _host = new HostController(CreateUnitOfWork(),_validator);
         }
 
         [Test]
