@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BelaSport.WebApi.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +26,8 @@ namespace BelaSport.WebApi.Migrations
                 {
                     dniHost = table.Column<int>(nullable: false),
                     nameHost = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    lastNameHost = table.Column<string>(unicode: false, maxLength: 50, nullable: false)
+                    lastNameHost = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    passwordHost = table.Column<string>(unicode: false, maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

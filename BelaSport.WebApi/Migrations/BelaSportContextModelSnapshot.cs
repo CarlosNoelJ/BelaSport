@@ -82,6 +82,12 @@ namespace BelaSport.WebApi.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
+                    b.Property<string>("PasswordHost")
+                        .IsRequired()
+                        .HasColumnName("passwordHost")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
                     b.HasKey("DniHost")
                         .HasName("pk_host");
 

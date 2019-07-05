@@ -80,6 +80,12 @@ namespace BelaSport.Repository.SqlServer
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.PasswordHost)
+                    .IsRequired()
+                    .HasColumnName("passwordHost")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.NameHost)
                     .IsRequired()
                     .HasColumnName("nameHost")

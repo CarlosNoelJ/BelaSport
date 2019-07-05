@@ -3,6 +3,7 @@ using BelaSport.Models;
 using BelaSport.Repository;
 using BelaSport.WebApi.Controllers;
 using FluentAssertions;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
@@ -14,10 +15,11 @@ namespace BelaSport.WebApi.Tests
     public class EventTypeControllerTests
     {
         private EventTypeController _eventType;
+        private readonly IValidator<EventType> _validator;
         [SetUp]
         public void Setup()
         {
-            _eventType = new EventTypeController(CreateUnitOfWork());
+            _eventType = new EventTypeController(CreateUnitOfWork(), _validator);
         }
 
         [Test]

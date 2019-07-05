@@ -34,8 +34,6 @@ namespace BelaSport.WebApi.Controllers
         [HttpPost]
         public IActionResult Post(Host Host)
         {
-            List<string> response = new List<string>();
-
             var validationResult = _validator.Validate(Host);
 
             if (!validationResult.IsValid)

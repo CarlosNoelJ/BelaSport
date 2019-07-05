@@ -18,6 +18,10 @@ namespace BelaSport.Models.FluentValidator
             RuleFor(host => host.LastNameHost)
                 .NotEmpty().WithMessage("Can't be empty")
                 .Length(3, 50).WithMessage("Please Complete with more than 3 characters and 50 maximun.");
+
+            RuleFor(host => host.PasswordHost)
+                .NotEmpty().WithMessage("Can't be empty")
+                .Length(3, 50).WithMessage("Please Complete with more than 3 characters and 50 maximun.");
         }
     }
 }

@@ -41,7 +41,11 @@ namespace BelaSport.WebApi
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+            // Validator
             services.AddTransient<IValidator<Host>, HostValidator>();
+            services.AddTransient<IValidator<EventType>,EventTypeValidator>();
+
+            services.AddCors();
 
             services.AddSwaggerGen(c =>{
                 c.SwaggerDoc("v1", new OpenApiInfo{
@@ -64,6 +68,11 @@ namespace BelaSport.WebApi
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(builder => 
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 
             app.UseSwagger();
 

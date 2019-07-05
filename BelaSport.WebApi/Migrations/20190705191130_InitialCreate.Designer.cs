@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BelaSport.WebApi.Migrations
 {
     [DbContext(typeof(BelaSportContext))]
-    [Migration("20190703164828_Initial")]
-    partial class Initial
+    [Migration("20190705191130_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,12 @@ namespace BelaSport.WebApi.Migrations
                     b.Property<string>("NameHost")
                         .IsRequired()
                         .HasColumnName("nameHost")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("PasswordHost")
+                        .IsRequired()
+                        .HasColumnName("passwordHost")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 

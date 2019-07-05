@@ -94,7 +94,8 @@ namespace BelaSport.WebApi.Tests
             {
                 DniHost = 1,
                 NameHost = "Samuel",
-                LastNameHost = "Umtiti"
+                LastNameHost = "Umtiti",
+                PasswordHost = "Admin"
             };
         }
     }

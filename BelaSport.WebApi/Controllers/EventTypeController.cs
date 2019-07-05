@@ -1,5 +1,6 @@
 ﻿using BelaSport.Models;
 using BelaSport.Repository;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BelaSport.WebApi.Controllers
@@ -9,20 +10,22 @@ namespace BelaSport.WebApi.Controllers
     public class EventTypeController : ControllerBase
     {
         private readonly IUnitOfWork _unit;
+        private readonly IValidator<EventType> _validator;
 
-        public EventTypeController(IUnitOfWork unit)
+        public EventTypeController(IUnitOfWork unit, IValidator<EventType> validator)
         {
             _unit = unit;
+            _validator = validator;
         }
 
-        // GET api/values
+        // GET api/eventType
         [HttpGet]
         public IActionResult Get()
         {
             return Ok( _unit.EventType.GetList());
         }
 
-        // GET api/values/5
+        // GET api/eventType/5
         [HttpGet]
         [Route("{id:int}")]
         public IActionResult GetById(int id)
@@ -30,21 +33,33 @@ namespace BelaSport.WebApi.Controllers
             return Ok(_unit.EventType.GetById(id));
         }
 
-        // POST api/values
+        // POST api/eventType
         [HttpPost]
         public IActionResult Post(EventType EventType)
         {
+            var validationResult = _validator.Validate(EventType);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult);
+            }
+
             return Ok(_unit.EventType.Add(EventType));
         }
 
-        // PUT api/values/5
+        // PUT api/eventType/5
         [HttpPut]
         public IActionResult Put(EventType EventType)
         {
+            var validationResult = _validator.Validate(EventType);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult);
+            }
             return Ok(_unit.EventType.Update(EventType));
         }
 
-        // DELETE api/values/5
+        // DELETE api/eventType/5
         [HttpDelete()]
         public IActionResult Delete(EventType EventType)
         {
