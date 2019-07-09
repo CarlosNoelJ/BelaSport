@@ -17,36 +17,62 @@ namespace BelaSport.WebApi.Controllers
     public class LogInController : ControllerBase
     {
 
-        private readonly UserManager<Host> _userManager;
+       // private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signinManager;
         private readonly ApplicationSettings _appSettings;
-        public LogInController(UserManager<Host> userManager, IOptions<ApplicationSettings> appSettings)
+        public LogInController(IOptions<ApplicationSettings> appSettings, SignInManager<IdentityUser> signinManager)
         {
-            _userManager = userManager;
+            //UserManager<IdentityUser> userManager,  _userManager = userManager;
             _appSettings = appSettings.Value;
+            _signinManager = signinManager;
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(Host host)
         {
-            var hostDni = await _userManager.FindByIdAsync(host.DniHost.ToString());
-
-            if (hostDni!= null && await _userManager.CheckPasswordAsync(host, host.PasswordHost))
+            if (ModelState.IsValid)
             {
-                var tokenDescriptor = new SecurityTokenDescriptor
+                var result = await _signinManager.PasswordSignInAsync(host.DniHost.ToString(), host.PasswordHost, false, lockoutOnFailure: true);
+                if (result.Succeeded)
                 {
-                    Subject = new ClaimsIdentity(new Claim[] {
-                        new Claim("DniHost", hostDni.DniHost.ToString())
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[] {
+                        new Claim("DniHost", host.DniHost.ToString())
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(5),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+                        Expires = DateTime.UtcNow.AddMinutes(5),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                    };
+
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
+                    return Ok(new { token });
+                }
+                else
+                    return BadRequest(new { message = "Username or password is incorrect" });
             }
             else
                 return BadRequest(new { message = "Username or password is incorrect" });
+            //var hostDni = await _userManager.FindByIdAsync(host.DniHost.ToString());
+
+            //if (hostDni!= null && await _userManager.CheckPasswordAsync(host, host.PasswordHost))
+            //{
+            //    var tokenDescriptor = new SecurityTokenDescriptor
+            //    {
+            //        Subject = new ClaimsIdentity(new Claim[] {
+            //            new Claim("DniHost", hostDni.DniHost.ToString())
+            //        }),
+            //        Expires = DateTime.UtcNow.AddMinutes(5),
+            //        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+            //    };
+            //    var tokenHandler = new JwtSecurityTokenHandler();
+            //    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            //    var token = tokenHandler.WriteToken(securityToken);
+            //    return Ok(new { token });
+            //}
+            //else
+            //    return BadRequest(new { message = "Username or password is incorrect" });
         }
     }
 }
