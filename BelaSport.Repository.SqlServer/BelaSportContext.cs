@@ -1,9 +1,10 @@
 ﻿using BelaSport.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BelaSport.Repository.SqlServer
 {
-    public partial class BelaSportContext : DbContext
+    public partial class BelaSportContext : IdentityDbContext
     {
         public BelaSportContext(DbContextOptions<BelaSportContext> options)
             : base(options)
@@ -16,6 +17,8 @@ namespace BelaSport.Repository.SqlServer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
             modelBuilder.Entity<EventTitle>(entity =>

@@ -2,7 +2,6 @@
 using BelaSport.Repository;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace BelaSport.WebApi.Controllers
 {
@@ -12,6 +11,7 @@ namespace BelaSport.WebApi.Controllers
     {
         private readonly IUnitOfWork _unit;
         private readonly IValidator<Host> _validator;
+
         public HostController(IUnitOfWork unit, IValidator<Host> validator)
         {
             _unit = unit;
